@@ -1,6 +1,8 @@
 import { SampleData } from "api/types";
-import axios from 'axios';
+import axios from "axios";
 import { useEffect, useState } from "react";
+
+import IssueList from "./issueList";
 
 function Data() {
     const [data, setData] = useState<SampleData | undefined>(undefined);
@@ -13,27 +15,29 @@ function Data() {
         let mounted = true;
 
         const fetchData = async () => {
-            const { data: allData } = await axios.get<SampleData>('/api/data');
+            const { data: allData } = await axios.get<SampleData>("/api/data");
 
             if (mounted) {
-                setData(allData)
+                setData(allData);
             }
-        }
+        };
 
         fetchData();
 
-        return () => { mounted = false; }
-    }, [])
+        return () => {
+            mounted = false;
+        };
+    }, []);
 
     if (!data) {
-        return 'loading data...';
+        return "loading data...";
     }
 
     return (
-        <div className='border p-4'>
-            <pre className='text-sm'>{JSON.stringify(data, null, 2)}</pre>
+        <div className="border p-4">
+            <pre className="text-sm">{JSON.stringify(data, null, 2)}</pre>
         </div>
-    )
+    );
 }
 
-export default Data
+export default Data;
