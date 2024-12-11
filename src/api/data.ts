@@ -2,6 +2,7 @@ import axios from "axios";
 import { Request, Response } from "express";
 import { SampleData } from "./types";
 import { start } from "repl";
+import { get } from "http";
 
 const DATA_URL =
     "https://sampleapi.squaredup.com/integrations/v1/service-desk?datapoints=500";
@@ -26,13 +27,6 @@ const calculatePercentagePriority = (data: SampleData, priority: string) => {
     return percentage * 100;
 };
 
-// const calculateCloseTime = (startDate: Date, endDate: Date) => {
-//     const average =
-//         (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60);
-
-//     return average;
-// };
-
 const calculateCloseTime = (issue: { created: string; updated: string }) => {
     const startDate = new Date(issue.created);
     const endDate = new Date(issue.updated);
@@ -44,11 +38,18 @@ const calculateCloseTime = (issue: { created: string; updated: string }) => {
 };
 
 const getScoreValue = (data: SampleData, averageTime: number) => {
+    const scores: { score: string }[] = [];
     const results = data.results;
 
-    const issues = results.filter((issue) => issue.priority === "high");
+    results.forEach((issue) => {
+        if (issue.priority === "high") {
+            if (calculateCloseTime(issue) > averageTime) {
+                scores.push(issue.satisfaction_rating);
+            }
+        }
+    });
 
-    // issues.forEach((issue) => {if()});
+    return scores;
 };
 
 export const GET = async (req: Request, res: Response) => {
@@ -98,10 +99,13 @@ export const GET = async (req: Request, res: Response) => {
         }
     });
 
+    const averageTime = timeTotal / count;
+
+    res.status(200).json(getScoreValue(data, averageTime));
+
     //res.status(200).json(averageCounts);
 
-    const averageTime = timeTotal / count;
-    res.status(200).json(timeTotal / count);
+    //res.status(200).json(timeTotal / count);
 
     //res.status(200).json(priorityCounts);
 
