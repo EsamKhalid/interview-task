@@ -26,11 +26,29 @@ const calculatePercentagePriority = (data: SampleData, priority: string) => {
     return percentage * 100;
 };
 
-const calculateCloseTime = (startDate: Date, endDate: Date) => {
+// const calculateCloseTime = (startDate: Date, endDate: Date) => {
+//     const average =
+//         (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60);
+
+//     return average;
+// };
+
+const calculateCloseTime = (issue: { created: string; updated: string }) => {
+    const startDate = new Date(issue.created);
+    const endDate = new Date(issue.updated);
+
     const average =
         (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60);
 
     return average;
+};
+
+const getScoreValue = (data: SampleData, averageTime: number) => {
+    const results = data.results;
+
+    const issues = results.filter((issue) => issue.priority === "high");
+
+    // issues.forEach((issue) => {if()});
 };
 
 export const GET = async (req: Request, res: Response) => {
@@ -72,10 +90,7 @@ export const GET = async (req: Request, res: Response) => {
     const count = results.filter((issue) => issue.priority === "high").length;
 
     results.forEach((issue) => {
-        const startDate = new Date(issue.created);
-        const endDate = new Date(issue.updated);
-
-        const average = calculateCloseTime(startDate, endDate);
+        const average = calculateCloseTime(issue);
 
         if (issue.priority === "high") {
             averageCounts.push({ priority: issue.priority, average: average });
