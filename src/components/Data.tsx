@@ -64,6 +64,7 @@ function Data() {
                     <option value="FilterByPriority">Filter By Priority</option>
                     <option value="SearchIssues">Search Issues</option>
                     <option value="DataOverview">Data Overview</option>
+                    <option value="BackendData">Backend Data</option>
                 </select>
             </div>
             {selectedComponent === "IssuesByPriority" && (
@@ -77,6 +78,9 @@ function Data() {
             )}
             {selectedComponent === "DataOverview" && (
                 <DataOverview issues={data.results} />
+            )}
+            {selectedComponent === "BackendData" && (
+                <pre className="text-sm">{JSON.stringify(data, null, 2)}</pre>
             )}
         </div>
     );
