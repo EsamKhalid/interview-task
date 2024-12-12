@@ -5,7 +5,7 @@ import { start } from "repl";
 import { get } from "http";
 
 const DATA_URL =
-    "https://sampleapi.squaredup.com/integrations/v1/service-desk?datapoints=500";
+    "https://sampleapi.squaredup.com/integrations/v1/service-desk?datapoints=100";
 
 const calculatePercentageTypes = (data: SampleData) => {
     const results = data.results;
@@ -96,7 +96,5 @@ const getScoreValue = (data: SampleData, averageTime: number) => {
 export const GET = async (req: Request, res: Response) => {
     const { data } = await axios.get<SampleData>(DATA_URL);
 
-    const results = data.results;
-
-    res.status(200).json(calculateAverageTime(data));
+    res.send(data);
 };

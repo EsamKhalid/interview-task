@@ -2,10 +2,13 @@ import { SampleData } from "api/types";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-import IssueList from "./issueList";
+import IssuesByPriority from "./IssuesByPriority";
+import FilterByPriority from "./FilterByPriority";
 
 function Data() {
     const [data, setData] = useState<SampleData | undefined>(undefined);
+
+    console.log(data);
 
     /**
      * Gets the data.
@@ -35,7 +38,9 @@ function Data() {
 
     return (
         <div className="border p-4">
-            <pre className="text-sm">{JSON.stringify(data, null, 2)}</pre>
+            {/* <pre className="text-sm">{JSON.stringify(data, null, 2)}</pre> */}
+            {/* <IssuesByPriority issues={data.results} /> */}
+            <FilterByPriority issues={data.results} />
         </div>
     );
 }
