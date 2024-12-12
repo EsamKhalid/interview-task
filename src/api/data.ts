@@ -134,14 +134,14 @@ export const GET = async (req: Request, res: Response) => {
     const averageTime = calculateAverageTime(data);
 
     const responseData = {
-        rawData: data,
-        scoreValue,
         percentageTypes,
         percentagePriority,
         averageTime,
+        scoreValue,
     };
 
     res.send(data);
+    //res.send(responseData);
     //res.status(200).json(calculatePercentageTypes(data));
     //res.status(200).json(calculatePercentagePriority(data));
     //res.status(200).json(calculateAverageTime(data) + " hours");
