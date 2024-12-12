@@ -37,11 +37,11 @@ function Data() {
 
     return (
         <div className="border p-4">
-            {/* <pre className="text-sm">{JSON.stringify(data, null, 2)}</pre> */}
+            <pre className="text-sm">{JSON.stringify(data, null, 2)}</pre>
             {/* <IssuesByPriority issues={data.results} /> */}
             {/* <FilterByPriority issues={data.results} /> */}
             {/* <SearchIssues issues={data.results} /> */}
-            <DataOverview issues={data.results} />
+            {/* <DataOverview issues={data.results} /> */}
         </div>
     );
 }
