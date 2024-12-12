@@ -43,7 +43,17 @@ const SearchIssues: React.FC<SearchIssuesProps> = ({ issues }) => {
                             >
                                 <td>{issue.id}</td>
                                 <td>{issue.type}</td>
-                                <td>{issue.priority}</td>
+                                <td
+                                    className={
+                                        issue.priority === "high"
+                                            ? "bg-red-500"
+                                            : issue.priority === "normal"
+                                            ? "bg-yellow-400"
+                                            : "bg-green-500"
+                                    }
+                                >
+                                    {issue.priority}
+                                </td>
                                 <td>{issue.organization_id}</td>
                             </tr>
                         ))}

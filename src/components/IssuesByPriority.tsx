@@ -41,8 +41,29 @@ const IssuesByPriority: React.FC<IssuesByPriorityProps> = ({ issues }) => {
                             >
                                 <td>{issue.id}</td>
                                 <td>{issue.type}</td>
-                                <td>{issue.priority}</td>
-                                <td>{issue.status}</td>
+
+                                <td
+                                    className={
+                                        issue.priority === "high"
+                                            ? "bg-red-500"
+                                            : issue.priority === "normal"
+                                            ? "bg-yellow-400"
+                                            : "bg-green-500"
+                                    }
+                                >
+                                    {issue.priority}
+                                </td>
+                                <td
+                                    className={
+                                        issue.status === "open"
+                                            ? "text-blue-500"
+                                            : issue.status === "closed"
+                                            ? "text-gray-500"
+                                            : "text-purple-500"
+                                    }
+                                >
+                                    {issue.status}
+                                </td>
                                 <td>{issue.subject}</td>
                             </tr>
                         ))}
