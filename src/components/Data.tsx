@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import IssuesByPriority from "./IssuesByPriority";
 import FilterByPriority from "./FilterByPriority";
+import SearchIssues from "./SearchIssues";
 
 function Data() {
     const [data, setData] = useState<SampleData | undefined>(undefined);
@@ -40,7 +41,8 @@ function Data() {
         <div className="border p-4">
             {/* <pre className="text-sm">{JSON.stringify(data, null, 2)}</pre> */}
             {/* <IssuesByPriority issues={data.results} /> */}
-            <FilterByPriority issues={data.results} />
+            {/* <FilterByPriority issues={data.results} /> */}
+            <SearchIssues issues={data.results} />
         </div>
     );
 }
