@@ -85,7 +85,7 @@ const DataOverview: React.FC<DataOverviewProps> = ({ issues }) => {
                 Key Data Overview
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-4 gap-6">
                 <div className="bg-white shadow-md rounded-lg p-4 border">
                     <h3 className="text-xl font-semibold text-blue-600 mb-4">
                         Tickets by Priority
@@ -142,7 +142,7 @@ const DataOverview: React.FC<DataOverviewProps> = ({ issues }) => {
                     </ul>
                 </div>
 
-                <div className="bg-white shadow-md rounded-lg p-4 border md:col-span-2 lg:col-span-1">
+                <div className="bg-white shadow-md rounded-lg p-4 ">
                     <h3 className="text-xl font-semibold text-yellow-600 mb-4">
                         Tickets by Satisfaction Rating
                     </h3>
