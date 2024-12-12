@@ -27,8 +27,9 @@ const FilterByPriority: React.FC<FilterByPriorityProps> = ({ issues }) => {
                         <tr className="[&>*]:border [&>*]:border-black">
                             <th>ID</th>
                             <th>Type</th>
-                            <th>Status</th>
                             <th>Priority</th>
+                            <th>Status</th>
+                            <th>Subject</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,8 +40,9 @@ const FilterByPriority: React.FC<FilterByPriorityProps> = ({ issues }) => {
                             >
                                 <td>{issue.id}</td>
                                 <td>{issue.type}</td>
-                                <td>{issue.status}</td>
                                 <td>{issue.priority}</td>
+                                <td>{issue.status}</td>
+                                <td>{issue.subject}</td>
                             </tr>
                         ))}
                     </tbody>

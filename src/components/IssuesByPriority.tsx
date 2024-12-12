@@ -29,6 +29,8 @@ const IssuesByPriority: React.FC<IssuesByPriorityProps> = ({ issues }) => {
                             <th>ID</th>
                             <th>Type</th>
                             <th>Priority</th>
+                            <th>Status</th>
+                            <th>Subject</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,6 +42,8 @@ const IssuesByPriority: React.FC<IssuesByPriorityProps> = ({ issues }) => {
                                 <td>{issue.id}</td>
                                 <td>{issue.type}</td>
                                 <td>{issue.priority}</td>
+                                <td>{issue.status}</td>
+                                <td>{issue.subject}</td>
                             </tr>
                         ))}
                     </tbody>
