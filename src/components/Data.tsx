@@ -50,40 +50,48 @@ function Data() {
         setSelectedComponent(event.target.value);
     };
 
-    return (
-        <div className="border p-4">
-            <div className="mb-4">
-                <select
-                    id="component-select"
-                    className="p-2 border rounded"
-                    //calls the event handler when this select element changes
-                    onChange={handleComponentChange}
-                    value={selectedComponent}
-                >
-                    <option value="IssuesByPriority">Issues By Priority</option>
-                    <option value="FilterByPriority">Filter By Priority</option>
-                    <option value="SearchIssues">Search Issues</option>
-                    <option value="DataOverview">Data Overview</option>
-                    <option value="BackendData">Backend Data</option>
-                </select>
+    if (data.results) {
+        return (
+            <div className="border p-4">
+                <div className="mb-4">
+                    <select
+                        id="component-select"
+                        className="p-2 border rounded"
+                        //calls the event handler when this select element changes
+                        onChange={handleComponentChange}
+                        value={selectedComponent}
+                    >
+                        <option value="IssuesByPriority">
+                            Issues By Priority
+                        </option>
+                        <option value="FilterByPriority">
+                            Filter By Priority
+                        </option>
+                        <option value="SearchIssues">Search Issues</option>
+                        <option value="DataOverview">Data Overview</option>
+                    </select>
+                </div>
+                {selectedComponent === "IssuesByPriority" && (
+                    <IssuesByPriority issues={data.results} />
+                )}
+                {selectedComponent === "FilterByPriority" && (
+                    <FilterByPriority issues={data.results} />
+                )}
+                {selectedComponent === "SearchIssues" && (
+                    <SearchIssues issues={data.results} />
+                )}
+                {selectedComponent === "DataOverview" && (
+                    <DataOverview issues={data.results} />
+                )}
             </div>
-            {selectedComponent === "IssuesByPriority" && (
-                <IssuesByPriority issues={data.results} />
-            )}
-            {selectedComponent === "FilterByPriority" && (
-                <FilterByPriority issues={data.results} />
-            )}
-            {selectedComponent === "SearchIssues" && (
-                <SearchIssues issues={data.results} />
-            )}
-            {selectedComponent === "DataOverview" && (
-                <DataOverview issues={data.results} />
-            )}
-            {selectedComponent === "BackendData" && (
-                <pre className="text-sm">{JSON.stringify(data, null, 2)}</pre>
-            )}
-        </div>
-    );
+        );
+    } else {
+        return (
+            <>
+                <pre className="text-sm">{JSON.stringify(data, null, 2)}</pre>;
+            </>
+        );
+    }
 }
 
 export default Data;

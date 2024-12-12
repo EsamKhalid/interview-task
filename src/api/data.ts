@@ -128,9 +128,22 @@ const getScoreValue = (data: SampleData, averageTime: number) => {
 export const GET = async (req: Request, res: Response) => {
     const { data } = await axios.get<SampleData>(DATA_URL);
 
+    const scoreValue = getScoreValue(data, calculateAverageTime(data));
+    const percentageTypes = calculatePercentageTypes(data);
+    const percentagePriority = calculatePercentagePriority(data);
+    const averageTime = calculateAverageTime(data);
+
+    const responseData = {
+        rawData: data,
+        scoreValue,
+        percentageTypes,
+        percentagePriority,
+        averageTime,
+    };
+
     res.send(data);
-    //res.status(200).json(getScoreValue(data, calculateAverageTime(data)));
     //res.status(200).json(calculatePercentageTypes(data));
     //res.status(200).json(calculatePercentagePriority(data));
     //res.status(200).json(calculateAverageTime(data) + " hours");
+    //res.status(200).json(getScoreValue(data, calculateAverageTime(data)));
 };
