@@ -5,12 +5,10 @@ import { useEffect, useState } from "react";
 import IssuesByPriority from "./IssuesByPriority";
 import FilterByPriority from "./FilterByPriority";
 import SearchIssues from "./SearchIssues";
+import DataOverview from "./DataOverView";
 
 function Data() {
     const [data, setData] = useState<SampleData | undefined>(undefined);
-
-    console.log(data);
-
     /**
      * Gets the data.
      * Hint: consider using the react-query library that is ready to go!
@@ -42,7 +40,8 @@ function Data() {
             {/* <pre className="text-sm">{JSON.stringify(data, null, 2)}</pre> */}
             {/* <IssuesByPriority issues={data.results} /> */}
             {/* <FilterByPriority issues={data.results} /> */}
-            <SearchIssues issues={data.results} />
+            {/* <SearchIssues issues={data.results} /> */}
+            <DataOverview issues={data.results} />
         </div>
     );
 }
