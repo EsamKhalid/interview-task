@@ -16,7 +16,7 @@ const priorityOrder = {
 
 const IssuesByPriority: React.FC<IssuesByPriorityProps> = ({ issues }) => {
     //creates a new sorted array called sorted issues and uses js sort method to sort the issues by priority
-    const sortedIssues = issues.slice().sort((a, b) => {
+    const sortedIssues = issues.slice(0, 100).sort((a, b) => {
         return priorityOrder[b.priority] - priorityOrder[a.priority];
     });
     return (

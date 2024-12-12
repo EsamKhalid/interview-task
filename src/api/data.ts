@@ -5,7 +5,7 @@ import { start } from "repl";
 import { get } from "http";
 
 const DATA_URL =
-    "https://sampleapi.squaredup.com/integrations/v1/service-desk?datapoints=100";
+    "https://sampleapi.squaredup.com/integrations/v1/service-desk?datapoints=500";
 
 const calculatePercentageTypes = (data: SampleData) => {
     //makes an array of issues based on the results property from SampleData

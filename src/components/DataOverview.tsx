@@ -9,6 +9,7 @@ interface DataOverviewProps {
 }
 
 const calculateKeyData = (data: SampleData) => {
+    //gets the results property and slices the first 100 results
     const results = data.results;
 
     //define object for each count
@@ -69,6 +70,8 @@ const DataOverview: React.FC<DataOverviewProps> = ({ issues }) => {
     if (!data) {
         return "loading data...";
     }
+
+    //uses the returns from the calculateKeyData function to define the counts
     const { priorityCounts, typeCounts, statusCounts, satisfactionCounts } =
         calculateKeyData(data);
     return (
@@ -78,15 +81,18 @@ const DataOverview: React.FC<DataOverviewProps> = ({ issues }) => {
                 <div>
                     <h3 className="text-xl">Tickets by Priority</h3>
                     <ul>
-                        {Object.entries(priorityCounts).map(
-                            ([priority, count]) => (
-                                <li key={priority}>
-                                    {priority.charAt(0).toUpperCase() +
-                                        priority.slice(1)}
-                                    : {count}
-                                </li>
+                        {
+                            //uses object entries to map over the priorityCounts object and return the priority and count
+                            //Object.entries(priorityCounts) returns [['low', 0], ['normal', 0], ['high', 0]]
+                            //map iterates over each key value pair then makes a list item with the priority and count
+                            Object.entries(priorityCounts).map(
+                                ([priority, count]) => (
+                                    <li key={priority}>
+                                        {priority}: {count}
+                                    </li>
+                                )
                             )
-                        )}
+                        }
                     </ul>
                 </div>
 
@@ -95,8 +101,7 @@ const DataOverview: React.FC<DataOverviewProps> = ({ issues }) => {
                     <ul>
                         {Object.entries(typeCounts).map(([type, count]) => (
                             <li key={type}>
-                                {type.charAt(0).toUpperCase() + type.slice(1)}:{" "}
-                                {count}
+                                {type}: {count}
                             </li>
                         ))}
                     </ul>
@@ -107,9 +112,7 @@ const DataOverview: React.FC<DataOverviewProps> = ({ issues }) => {
                     <ul>
                         {Object.entries(statusCounts).map(([status, count]) => (
                             <li key={status}>
-                                {status.charAt(0).toUpperCase() +
-                                    status.slice(1)}
-                                : {count}
+                                {status}: {count}
                             </li>
                         ))}
                     </ul>
@@ -121,7 +124,7 @@ const DataOverview: React.FC<DataOverviewProps> = ({ issues }) => {
                         {Object.entries(satisfactionCounts).map(
                             ([rating, count]) => (
                                 <li key={rating}>
-                                    Rating {rating}: {count}
+                                    {rating}: {count}
                                 </li>
                             )
                         )}
